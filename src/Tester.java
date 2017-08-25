@@ -26,6 +26,13 @@ public class Tester {
 			s.printTokens();
 		}
 		//Step 2 : Remove WhiteSpaceTokens
+		removeWhiteSpaceTokens(sentences);
+		
+		//Step 3: Interpret Tokens
+		
+	}
+
+	private static void removeWhiteSpaceTokens(List<Sentence> sentences) {
 		for(int i = 0; i < sentences.size(); i++) {
 			Sentence sentence = sentences.get(i);
 			 List<Token> tl = sentence.getTokenList();
@@ -41,8 +48,6 @@ public class Tester {
 			sentence.setTokenList(tl);
 			sentences.set(i, sentence);
 		}
-		
-		//Step 3: Interpret Tokens
 		
 	}
 }

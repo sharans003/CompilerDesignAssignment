@@ -2,9 +2,7 @@ package Sentence;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Token.Token;
-import Token.Token.TokenType;
 import Token.Tokenizer;
 
 public class Sentence {
