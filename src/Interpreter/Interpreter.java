@@ -32,7 +32,6 @@ public class Interpreter {
 				}
 			}
 
-			//for(int i =0; i <operatorStack.size(); i++) {
 			while(operatorStack.size() > 0) {
 
 				Token op = operatorStack.remove(0);
@@ -68,7 +67,7 @@ public class Interpreter {
 			if(operandStack.size() ==1)
 				System.out.println("result is:"+operandStack.remove(0).getTokenValue());
 			else {
-				System.out.println("Something went wrong in arithmetic parsing");
+				System.out.println("Something went wrong in arithmetic parsing");				
 			}
 		}
 	}
