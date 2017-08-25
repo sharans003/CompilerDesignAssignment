@@ -37,6 +37,16 @@ public class Token {
 			if(this.equals(CLOSEBRACE)) return true;
 			return false;
 		}
+
+		public boolean isVariable() {
+			if(this.equals(VARIABLE)) return true;
+			return false;
+		}
+
+		public boolean isInteger() {
+			if(this.equals(INTEGER)) return true;
+			return false;
+		}
 	}
 	
 	private String value;

@@ -18,7 +18,7 @@ public class Interpreter {
 		this.operatorStack = new ArrayList<>();
 	}
 
-	public Token evaluateString(List<Sentence> sentences) {
+	public Token evaluateString(List<Sentence> sentences) throws Exception {
 		for(Sentence s: sentences) {
 			this.operandStack = new ArrayList<>();
 			this.operatorStack = new ArrayList<>();
@@ -38,7 +38,6 @@ public class Interpreter {
 					Token var = new Token(TokenType.INTEGER, variableMap.get(t.getTokenValue()));
 					operandStack.add(0, var);
 					} else {
-						// RAISE ERROR
 						operandStack.add(0,t);
 					}
 					
@@ -96,7 +95,7 @@ public class Interpreter {
 		return true;
 	}
 
-	private Token applyOperator(Token tok1, Token tok2, Token operator) {
+	private Token applyOperator(Token tok1, Token tok2, Token operator) throws Exception {
 		Token tokenResult = null;
 		int result;
 		String num1 = tok1.getTokenValue();
@@ -127,6 +126,7 @@ public class Interpreter {
 			operandStack.add(0, tokenResult);
 			break;
 		case "=":
+			checkAssignment(tok1,tok2);
 			variableMap.put(tok2.getTokenValue(), tok1.getTokenValue());
 			Token varVal = new Token(TokenType.INTEGER, tok1.getTokenValue());
 			operandStack.add(0, varVal);
@@ -135,6 +135,21 @@ public class Interpreter {
 		}
 
 		return tokenResult;
+	}
+
+	private void checkAssignment(Token tok1, Token tok2) throws Exception{
+		// correct thing is : token1 is a number, token 2 is a variable
+		if(tok1.getTokenType().isVariable() && tok2.getTokenType().isInteger()) {
+			throw new Exception();
+		}
+		if(tok1.getTokenType().isInteger() && tok2.getTokenType().isInteger()) {
+			throw new Exception();
+		}
+		if(tok1.getTokenType().isVariable() && tok2.getTokenType().isVariable()) {
+			if(!variableMap.containsKey(tok1.getTokenValue())) {
+				throw new Exception();
+			}
+		}
 	}
 
 }

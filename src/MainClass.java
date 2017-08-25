@@ -9,7 +9,7 @@ public class MainClass {
 	public static String inputFilePath = "";
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		List<String> inputStrings ;
 		
 		if(inputFilePath.isEmpty()) {
@@ -30,7 +30,11 @@ public class MainClass {
 
 		//Step 3: Interpret validity of all sentences just based on operands
 		Interpreter interpreter = new Interpreter();
-		interpreter.evaluateString(sentences); // Evaluate the correctness of the interpreter					
+		try {
+			interpreter.evaluateString(sentences); // Evaluate the correctness of the interpreter
+		} catch(Exception e) {
+			System.out.println("Wrong inputs Syntax!" + e);
+		}
 	}
 
 
