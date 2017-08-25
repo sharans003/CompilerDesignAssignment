@@ -15,12 +15,14 @@ public class Tester {
 		} else {
 			inputStrings = Utils.readFromFile(inputFilePath);
 		}
-		
+		// Step 1 : Tokenize
 		List<Sentence> sentences = Sentence.convertTextToSentences(inputStrings);
 		Sentence.tokenize(sentences);
 		
 		for(Sentence s : sentences) {
 			s.printTokens();
 		}
+		//Step 2 : Evaluate the Tokens correctness
+		
 	}
 }

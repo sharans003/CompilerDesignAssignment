@@ -5,15 +5,18 @@ import java.util.List;
 
 import Token.Token;
 import Token.Token.TokenType;
+import Token.Tokenizer;
 
 public class Sentence {
 
 	public String lineOfText;
 	public List<Token> tokenList;
+	private int tokenPointer;
 
 	public Sentence(String lineOfText) {
 		this.lineOfText = lineOfText;
 		this.tokenList = new ArrayList<>();
+		this.setTokenPointer(0);
 	}
 
 	public String getLineOfText() {
@@ -38,15 +41,11 @@ public class Sentence {
 	}
 
 	public static void tokenize(List<Sentence> sentences) {
-		for(int j = 0; j<sentences.size(); j++) {
+		for(int j = 0; j < sentences.size(); j++) {
 			Sentence sentence = sentences.get(j);
-			
-			for(int i = 0; i< sentence.getLineOfText().length(); i++) {
-				String charAtIndex = sentence.getLineOfText().substring(i,i+1);
-				TokenType type = Token.getTokenType(charAtIndex);
-				Token t = new Token(type, charAtIndex);
-				sentences.get(j).getTokenList().add(t);
-			}
+			List<Token> tokens = Tokenizer.tokenize(sentence);
+			sentence.setTokenList(tokens);
+			sentences.set(j, sentence);
 		}
 	}
 
@@ -58,5 +57,13 @@ public class Sentence {
 			System.out.println("Text: "+t.getTokenValue() +", type: "+t.getTokenType().toString());
 		}
 		System.out.println("----------------------------------------");
+	}
+
+	public int getTokenPointer() {
+		return tokenPointer;
+	}
+
+	public void setTokenPointer(int tokenPointer) {
+		this.tokenPointer = tokenPointer;
 	}
 }

@@ -1,7 +1,5 @@
 package Token;
 
-import Token.Token.TokenType;
-
 public class Token {
 
 	public enum TokenType {
@@ -15,10 +13,19 @@ public class Token {
 	
 	private String value;
 	private TokenType tokenType;
+	private int startIndex;
+	private int endIndex;
+	//private int currentPos;
 	
 	public Token(TokenType t, String value) {
 		this.value = value;
 		this.tokenType = t; 
+	}
+	public Token(TokenType t, String value, int start, int end) {
+		this.value = value;
+		this.tokenType = t; 
+		this.startIndex = start;
+		this.endIndex = end;
 	}
 	
 	public TokenType getTokenType() {
@@ -30,36 +37,24 @@ public class Token {
 	public String getTokenValue() {
 		return this.value;
 	}
-	public void setTokenValue() {
+	public void setTokenValue(String value) {
 		this.value = value;
+	}			
+
+	public int getStartIndex() {
+		return startIndex;
 	}
-	
-	public static TokenType getTokenType(String line) {
-		if(isNumeric(line)) {
-			return TokenType.INTEGER;
-		} else if(isPlus(line)) {
-			return TokenType.PLUS;
-		} else if (isPrint(line)) {
-			return TokenType.PRINT;
-		} else if(isWS(line)) {
-			return TokenType.WHITESPACE;
-		} else {
-			return TokenType.ERROR;
-		}
+
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
 	}
-	
-	public static boolean isNumeric(String str) {
-	  return str.matches("\\d+(\\.\\d+)?");  
+
+	public int getEndIndex() {
+		return endIndex;
 	}
-	
-	public static boolean isPrint(String str) {
-		return str.matches("print");
+
+	public void setEndIndex(int endIndex) {
+		this.endIndex = endIndex;
 	}
-	
-	public static boolean isPlus(String str) {
-		return str.matches("\\+");
-	}
-	public static boolean isWS(String str) {
-		return str.matches("\\s+");
-	}
+
 }
