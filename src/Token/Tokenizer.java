@@ -31,42 +31,21 @@ public class Tokenizer {
 		List<Token> tokenList = new ArrayList<>();
 
 		while(tokenizer.pos < tokenizer.lineofText.length()) {
-
-			String charAt = String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos));			
-			TokenType tt;			
+				
 			Token t = tokenMatcher(tokenizer,TokenType.INTEGER) ;
+			if(t != null) tokenList.add(t);
+			t = tokenMatcher(tokenizer,TokenType.MULTIPLY) ;
+			if(t != null) tokenList.add(t);
+			t = tokenMatcher(tokenizer,TokenType.DIVIDE) ;
+			if(t != null) tokenList.add(t);
+			t = tokenMatcher(tokenizer,TokenType.MINUS) ;
+			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.PLUS) ;
+			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.WHITESPACE) ;
+			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.PRINT) ;
-			if(t != null) {
-				tokenList.add(t);
-				//tt = TokenType.INTEGER;
-			} else {
-				tt = TokenType.ERROR;
-				t = new Token(tt, "ERROR IN LEXER");
-			}
-			/*else {
-				if(isPlus(charAt)) {
-
-					tt = TokenType.PLUS;
-					Token token = new Token(tt, String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos)), tokenizer.pos, tokenizer.pos);				
-					tokenList.add(token);
-					tokenizer.pos +=1;
-
-				} else if(isWS(charAt)) {
-					tt = TokenType.WHITESPACE;
-					Token token = new Token(tt, String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos)), tokenizer.pos, tokenizer.pos);				
-					tokenList.add(token);
-					tokenizer.pos +=1;
-				} else if(isPrint(charAt)) {
-					tt = TokenType.PRINT;
-					Token token = new Token(tt, String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos)), tokenizer.pos, tokenizer.pos);					
-					tokenList.add(token);
-					tokenizer.pos +=1;
-				} else {
-					tt = TokenType.ERROR;
-				}
-			}*/
+			if(t != null) tokenList.add(t);
 
 		}
 		return tokenList;
@@ -82,12 +61,21 @@ public class Tokenizer {
 		case PLUS:
 			pat = "^(\\+)";
 			break;
+		case MINUS:
+			pat = "^(\\-)";
+			break;
+		case DIVIDE:
+			pat = "^(\\/)";
+			break;
+		case MULTIPLY:
+			pat = "^(\\*)";
+			break;
 		case PRINT:
-			pat = "^(print.*)";
+			pat = "^(print.+)";
 			break;
 		case WHITESPACE:
 			pat = "^(\\s+)";
-			break;
+			break;			
 		default:
 			pat = null;
 
@@ -96,7 +84,7 @@ public class Tokenizer {
 			Pattern p = Pattern.compile(pat);
 			Matcher m = p.matcher(ss);
 			if(m.find()) {
-				System.out.println("Group  "+m.group());
+				//System.out.println("Group  "+m.group());
 				Token token = new Token(tt, m.group(), tokenizer.pos, tokenizer.pos+m.group().length()-1);
 				tokenizer.setPos(tokenizer.pos+m.group().length());
 				return token;

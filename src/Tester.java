@@ -1,9 +1,5 @@
-import java.util.ArrayList;
 import java.util.List;
-
 import Sentence.Sentence;
-import Token.Token;
-import Token.Token.TokenType;
 import Utils.Utils;
 
 public class Tester {

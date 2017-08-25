@@ -4,9 +4,11 @@ public class Token {
 
 	public enum TokenType {
 		INTEGER, 
-		PLUS, 
-		PRINT,
-		EOF,
+		PLUS,
+		MINUS,
+		MULTIPLY,
+		DIVIDE,
+		PRINT,		
 		ERROR,
 		WHITESPACE;
 	}
