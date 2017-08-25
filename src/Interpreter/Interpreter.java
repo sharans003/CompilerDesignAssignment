@@ -33,13 +33,14 @@ public class Interpreter {
 				if(t.getTokenType().equals(TokenType.INTEGER)) {
 					operandStack.add(0, t);
 				} else if(t.getTokenType().equals(TokenType.VARIABLE)) {
-					//if(variableMap.containsKey(t.getTokenValue())) {
-					//	Token var = new Token(TokenType.INTEGER, variableMap.get(t.getTokenValue()));
-					//	operandStack.add(0, var);
-					//} else {
+					if(variableMap.containsKey(t.getTokenValue())) {
+					Token var = new Token(TokenType.INTEGER, variableMap.get(t.getTokenValue()));
+					operandStack.add(0, var);
+					} else {
 						// RAISE ERROR
-						
-					//}
+						operandStack.add(0,t);
+					}
+					
 				} else if(t.getTokenType().equals(TokenType.OPENBRACE)) {
 					operatorStack.add(0,t);
 				} else if(t.getTokenType().equals(TokenType.CLOSEBRACE)) {
@@ -125,6 +126,8 @@ public class Interpreter {
 			break;
 		case "=":
 			variableMap.put(tok2.getTokenValue(), tok1.getTokenValue());
+			Token varVal = new Token(TokenType.INTEGER, tok1.getTokenValue());
+			operandStack.add(0, varVal);
 			break;
 
 		}
