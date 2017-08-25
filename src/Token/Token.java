@@ -15,7 +15,7 @@ public class Token {
 	private TokenType tokenType;
 	private int startIndex;
 	private int endIndex;
-	//private int currentPos;
+
 	
 	public Token(TokenType t, String value) {
 		this.value = value;

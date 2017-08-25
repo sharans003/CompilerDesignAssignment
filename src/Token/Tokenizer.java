@@ -88,9 +88,7 @@ public class Tokenizer {
 		}
 		return tokenList;
 	}
-	private static boolean isDigit(String charAt) {		
-		return charAt.matches("\\d+(\\.\\d+)?"); 
-	}
+
 	private static Token multipleDigit(Tokenizer tokenizer) {		
 		String ss = tokenizer.lineofText.substring(tokenizer.getPos(), tokenizer.lineofText.length());
 		String pat = "^(\\d+)";
