@@ -34,12 +34,18 @@ public class Tokenizer {
 
 			String charAt = String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos));			
 			TokenType tt;			
-			Token t = multipleDigit(tokenizer) ;			
+			Token t = tokenMatcher(tokenizer,TokenType.INTEGER) ;
+			t = tokenMatcher(tokenizer,TokenType.PLUS) ;
+			t = tokenMatcher(tokenizer,TokenType.WHITESPACE) ;
+			t = tokenMatcher(tokenizer,TokenType.PRINT) ;
 			if(t != null) {
 				tokenList.add(t);
-				tt = TokenType.INTEGER;
+				//tt = TokenType.INTEGER;
+			} else {
+				tt = TokenType.ERROR;
+				t = new Token(tt, "ERROR IN LEXER");
 			}
-			else {
+			/*else {
 				if(isPlus(charAt)) {
 
 					tt = TokenType.PLUS;
@@ -60,23 +66,42 @@ public class Tokenizer {
 				} else {
 					tt = TokenType.ERROR;
 				}
-			}
+			}*/
 
 		}
 		return tokenList;
 	}
 
-	private static Token multipleDigit(Tokenizer tokenizer) {		
+	private static Token tokenMatcher(Tokenizer tokenizer, TokenType tt) {		
 		String ss = tokenizer.lineofText.substring(tokenizer.getPos(), tokenizer.lineofText.length());
-		String pat = "^(\\d+)";
-		Pattern p = Pattern.compile(pat);
-		Matcher m = p.matcher(ss);
-		if(m.find()) {
-			System.out.println("Group  "+m.group());
-			Token token = new Token(TokenType.INTEGER, m.group(), tokenizer.pos, tokenizer.pos+m.group().length()-1);
-			tokenizer.setPos(tokenizer.pos+m.group().length());
-			return token;
-		} 
+		String pat ;
+		switch(tt) {
+		case INTEGER:
+			pat = "^(\\d+)";
+			break;
+		case PLUS:
+			pat = "^(\\+)";
+			break;
+		case PRINT:
+			pat = "^(print.*)";
+			break;
+		case WHITESPACE:
+			pat = "^(\\s+)";
+			break;
+		default:
+			pat = null;
+
+		}
+		if(pat != null) {
+			Pattern p = Pattern.compile(pat);
+			Matcher m = p.matcher(ss);
+			if(m.find()) {
+				System.out.println("Group  "+m.group());
+				Token token = new Token(tt, m.group(), tokenizer.pos, tokenizer.pos+m.group().length()-1);
+				tokenizer.setPos(tokenizer.pos+m.group().length());
+				return token;
+			} 
+		}
 		return null;
 	}
 
