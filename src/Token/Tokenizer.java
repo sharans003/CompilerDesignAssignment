@@ -89,6 +89,12 @@ public class Tokenizer {
 		case VARIABLE:
 			pat = "^(([a-zA-Z]+)([0-9]*))";
 			break;
+		case OPENBRACE:
+			pat = "^(\\()";
+			break;
+		case CLOSEBRACE:
+			pat = "^(\\))";
+			break;
 		default:
 			pat = null;
 

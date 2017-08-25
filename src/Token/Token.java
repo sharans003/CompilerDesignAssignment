@@ -12,7 +12,9 @@ public class Token {
 		PRINT,		
 		ERROR,
 		WHITESPACE,
-		VARIABLE;
+		VARIABLE,
+		OPENBRACE,
+		CLOSEBRACE;
 
 		public boolean isOperator() {
 			if(this.equals(MINUS) || this.equals(DIVIDE) || this.equals(PLUS) || this.equals(MULTIPLY) || this.equals(EQUALS)) {
@@ -25,6 +27,14 @@ public class Token {
 			if(this.equals(INTEGER) || this.equals(VARIABLE)) {
 				return true;
 			}
+			return false;
+		}
+		public boolean isOpenBrace() {
+			if(this.equals(OPENBRACE)) return true;
+			return false;
+		}
+		public boolean isCloseBrace() {
+			if(this.equals(CLOSEBRACE)) return true;
 			return false;
 		}
 	}

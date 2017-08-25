@@ -31,10 +31,9 @@ public class Tester {
 		}
 		//Step 3: Interpret validity of all sentences just based on operands
 		Interpreter interpreter = new Interpreter();
-		interpreter.parse(sentences);
-		// Step 4: Check validity based on variables that appear in order
+		interpreter.evaluateString(sentences);		
 		
-		// Step 5: 
+		// Step 4: 
 		
 	}
 
