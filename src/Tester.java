@@ -1,4 +1,6 @@
 import java.util.List;
+
+import Interpreter.Interpreter;
 import Sentence.Sentence;
 import Utils.Utils;
 
@@ -28,7 +30,7 @@ public class Tester {
 			s.printTokens();
 		}
 		//Step 3: Interpret validity of all sentences just based on operands
-		
+		Interpreter.parse(sentences);
 		// Step 4: Check validity based on variables that appear in order
 		
 		// Step 5: 

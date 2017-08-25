@@ -31,7 +31,7 @@ public class Tokenizer {
 		List<Token> tokenList = new ArrayList<>();
 
 		while(tokenizer.pos < tokenizer.lineofText.length()) {
-				
+			
 			Token t = tokenMatcher(tokenizer,TokenType.INTEGER) ;
 			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.MULTIPLY) ;
@@ -41,6 +41,8 @@ public class Tokenizer {
 			t = tokenMatcher(tokenizer,TokenType.MINUS) ;
 			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.PLUS) ;
+			if(t != null) tokenList.add(t);
+			t = tokenMatcher(tokenizer,TokenType.EQUALS) ;
 			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.WHITESPACE) ;
 			if(t != null) tokenList.add(t);

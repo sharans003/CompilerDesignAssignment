@@ -8,9 +8,24 @@ public class Token {
 		MINUS,
 		MULTIPLY,
 		DIVIDE,
+		EQUALS,
 		PRINT,		
 		ERROR,
 		WHITESPACE;
+
+		public boolean isOperator() {
+			if(this.equals(MINUS) || this.equals(DIVIDE) || this.equals(PLUS) || this.equals(MULTIPLY)) {
+				return true;
+			}
+			return false;
+		}
+
+		public boolean isOperand() {
+			if(this.equals(INTEGER)) {
+				return true;
+			}
+			return false;
+		}
 	}
 	
 	private String value;
