@@ -26,10 +26,10 @@ public class Interpreter {
 			List<Token> tokenList = s.getTokenList();
 			for(Token t:tokenList) {
 				if(t.getTokenType().isOperator()) {
-					System.out.println(t.getTokenValue());
+					//System.out.println(t.getTokenValue());
 					this.operatorStack.add(0, t);
 				} else if(t.getTokenType().isOperand()) {
-					System.out.println(t.getTokenValue());
+					//System.out.println(t.getTokenValue());
 					this.operandStack.add(0, t);
 				}
 			}
