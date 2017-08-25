@@ -32,37 +32,14 @@ public class Tokenizer {
 
 		while(tokenizer.pos < tokenizer.lineofText.length()) {
 
-			String charAt = String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos));
-			//String charAt = tokenizer.lineofText.substring(tokenizer.pos, tokenizer.lineofText.length());
-			TokenType tt;
-
-			/*if(isDigit(charAt) == true) {
+			String charAt = String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos));			
+			TokenType tt;			
+			Token t = multipleDigit(tokenizer) ;			
+			if(t != null) {
+				tokenList.add(t);
 				tt = TokenType.INTEGER;
-
-				Token token = new Token(tt, String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos)), tokenizer.pos, tokenizer.pos);				
-
-				try {
-					while(tokenizer.pos + 1 < tokenizer.lineofText.length()) {
-						tokenizer.pos = tokenizer.pos +1;
-						String nextChar = String.valueOf(tokenizer.lineofText.charAt(tokenizer.pos));
-						if(isDigit(nextChar)) {
-							token.setEndIndex(tokenizer.pos);
-							token.setTokenValue(tokenizer.lineofText.substring(token.getStartIndex(), token.getEndIndex()+1));
-							if(tokenizer.pos +1 == tokenizer.lineofText.length()) tokenizer.pos +=1; // HACK
-						} else {
-							System.out.println("In break");
-							break;
-						}
-					}
-				} catch(Exception e) {
-					System.out.println("In catch");
-				}				
-				tokenList.add(token);
-
-			} else*/
-			Token t = multipleDigit(tokenizer) ;
-			if(t != null) tokenList.add(t);
-			else{
+			}
+			else {
 				if(isPlus(charAt)) {
 
 					tt = TokenType.PLUS;

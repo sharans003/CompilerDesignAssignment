@@ -31,7 +31,11 @@ public class Tester {
 		for(Sentence s : sentences) {
 			s.printTokens();
 		}
-		//Step 3: Interpret Tokens
+		//Step 3: Interpret validity of all sentences just based on operands
+		
+		// Step 4: Check validity based on variables that appear in order
+		
+		// Step 5: 
 		
 	}
 
