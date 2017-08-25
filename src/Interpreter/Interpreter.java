@@ -1,8 +1,8 @@
 package Interpreter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import Sentence.Sentence;
 import Token.Token;
 import Token.Token.TokenType;
@@ -11,6 +11,7 @@ public class Interpreter {
 
 	public List<Token> operandStack;
 	public List<Token> operatorStack;
+	public HashMap<String,String> variableMap = new HashMap<String,String>(); 
 
 	public Interpreter() {
 		this.operandStack = new ArrayList<>();
@@ -59,6 +60,9 @@ public class Interpreter {
 					result = Integer.parseInt(no2.getTokenValue()) / Integer.parseInt(no1.getTokenValue());
 					tokenResult = new Token(TokenType.INTEGER, String.valueOf(result));
 					operandStack.add(0, tokenResult);
+					break;
+				case "=":
+					variableMap.put(no2.getTokenValue(), no1.getTokenValue());
 					break;
 
 				}
