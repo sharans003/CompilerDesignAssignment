@@ -2,7 +2,6 @@ package Interpreter;
 
 import Sentence.Sentence;
 import Token.Token;
-import Token.Token.TokenType;
 
 public class Interpreter {
 

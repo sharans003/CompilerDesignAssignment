@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Token.Token;
 import Token.Tokenizer;
+import Token.Token.TokenType;
 
 public class Sentence {
 
@@ -48,7 +49,7 @@ public class Sentence {
 	}
 
 	public void printTokens() {
-		
+
 		System.out.println("Line of text is:"+ this.getLineOfText());
 		List<Token> tokenList = this.getTokenList();
 		for(Token t : tokenList) {
@@ -63,5 +64,21 @@ public class Sentence {
 
 	public void setTokenPointer(int tokenPointer) {
 		this.tokenPointer = tokenPointer;
+	}
+
+
+	public static Sentence removeWhiteSpaceTokens(Sentence sentence) {
+		List<Token> tl = sentence.getTokenList();
+		List<Integer> indexToPop = new ArrayList<>();
+		for(int j = 0; j <tl.size(); j++) {
+			if(tl.get(j).getTokenType() == TokenType.WHITESPACE) {
+				indexToPop.add(j);
+			}
+		}
+		for(int j = indexToPop.size()-1;j>=0;j--) {		
+			tl.remove(tl.get(indexToPop.get(j)));
+		}
+		sentence.setTokenList(tl);
+		return sentence;
 	}
 }
