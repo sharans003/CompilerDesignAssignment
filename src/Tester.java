@@ -30,7 +30,8 @@ public class Tester {
 			s.printTokens();
 		}
 		//Step 3: Interpret validity of all sentences just based on operands
-		Interpreter.parse(sentences);
+		Interpreter interpreter = new Interpreter();
+		interpreter.parse(sentences);
 		// Step 4: Check validity based on variables that appear in order
 		
 		// Step 5: 
