@@ -47,7 +47,12 @@ public class Tokenizer {
 			t = tokenMatcher(tokenizer,TokenType.WHITESPACE) ;
 			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.PRINT) ;
-			if(t != null) tokenList.add(t);
+			if(t != null) {
+				tokenList.add(t);
+			} else {
+				t = tokenMatcher(tokenizer, TokenType.VARIABLE);
+				if(t != null) tokenList.add(t);
+			}
 
 		}
 		return tokenList;
@@ -77,7 +82,13 @@ public class Tokenizer {
 			break;
 		case WHITESPACE:
 			pat = "^(\\s+)";
-			break;			
+			break;	
+		case EQUALS:
+			pat = "^(=)";
+			break;
+		case VARIABLE:
+			pat = "^(([a-zA-Z]+)([0-9]*))";
+			break;
 		default:
 			pat = null;
 

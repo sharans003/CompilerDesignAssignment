@@ -11,17 +11,18 @@ public class Token {
 		EQUALS,
 		PRINT,		
 		ERROR,
-		WHITESPACE;
+		WHITESPACE,
+		VARIABLE;
 
 		public boolean isOperator() {
-			if(this.equals(MINUS) || this.equals(DIVIDE) || this.equals(PLUS) || this.equals(MULTIPLY)) {
+			if(this.equals(MINUS) || this.equals(DIVIDE) || this.equals(PLUS) || this.equals(MULTIPLY) || this.equals(EQUALS)) {
 				return true;
 			}
 			return false;
 		}
 
 		public boolean isOperand() {
-			if(this.equals(INTEGER)) {
+			if(this.equals(INTEGER) || this.equals(VARIABLE)) {
 				return true;
 			}
 			return false;
