@@ -65,6 +65,7 @@ public class Interpreter {
 							num2 = variableMap.get(tok2.getTokenValue());
 						} else {
 							// error
+							if(op.getTokenType() != TokenType.EQUALS)
 							System.out.println("Variable2 not defined!");
 						}
 					}
@@ -105,7 +106,7 @@ public class Interpreter {
 			}
 
 		}
-		if(operandStack.size() ==1)
+		if(operandStack.size() == 1)
 			System.out.println("result is:"+operandStack.remove(0).getTokenValue());
 		else {
 			System.out.println("Something went wrong in arithmetic parsing");				
