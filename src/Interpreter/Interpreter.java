@@ -22,10 +22,11 @@ public class Interpreter {
 		for(Sentence s: sentences) {
 			this.operandStack = new ArrayList<>();
 			this.operatorStack = new ArrayList<>();
-			
+			boolean isPrint = false;
 			List<Token> tokenList = s.getTokenList();
 			for(Token t: tokenList) {
-				System.out.println("CurrentToken is: "+t.getTokenValue());
+				if(t.getTokenType().equals(TokenType.PRINT)) isPrint = true;
+				//System.out.println("CurrentToken is: "+t.getTokenValue());
 				if(t.getTokenType().equals(TokenType.WHITESPACE)) {
 					continue;
 				}
@@ -78,7 +79,8 @@ public class Interpreter {
 					operandStack.add(0,result);
 				}
 			}
-			System.out.println("Result is: "+operandStack.get(0).getTokenValue());
+			if(isPrint)
+			System.out.println("Print Statement...  "+operandStack.get(0).getTokenValue());
 			
 		}
 		return operandStack.remove(0);

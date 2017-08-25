@@ -82,7 +82,7 @@ public class Tokenizer {
 			pat = "^(\\*)";
 			break;
 		case PRINT:
-			pat = "^(print.+)";
+			pat = "^(print\\s+)";
 			break;
 		case WHITESPACE:
 			pat = "^(\\s+)";

@@ -26,9 +26,9 @@ public class Tester {
 			Sentence sentence = Sentence.removeWhiteSpaceTokens(sentences.get(i));
 			sentences.set(i, sentence);
 		}
-		for(Sentence s : sentences) {
-			s.printTokens();
-		}
+//		for(Sentence s : sentences) {
+//			s.printTokens();
+//		}
 		//Step 3: Interpret validity of all sentences just based on operands
 		Interpreter interpreter = new Interpreter();
 		interpreter.evaluateString(sentences);		
