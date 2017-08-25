@@ -46,6 +46,10 @@ public class Tokenizer {
 			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.WHITESPACE) ;
 			if(t != null) tokenList.add(t);
+			t = tokenMatcher(tokenizer,TokenType.OPENBRACE) ;
+			if(t != null) tokenList.add(t);
+			t = tokenMatcher(tokenizer,TokenType.CLOSEBRACE) ;
+			if(t != null) tokenList.add(t);
 			t = tokenMatcher(tokenizer,TokenType.PRINT) ;
 			if(t != null) {
 				tokenList.add(t);
