@@ -106,18 +106,4 @@ public class Tokenizer {
 		return null;
 	}
 
-	public static boolean isPrint(String str) {
-		// Needs to change
-		return str.matches("print");
-	}
-
-	public static boolean isPlus(String str) {
-		return str.matches("\\+");
-	}
-	public static boolean isWS(String str) {
-		return str.matches("\\s+");
-	}
-
-
-
 }
